@@ -1,6 +1,6 @@
 # Update bump details accordingly. Use bump check to confirm.
 # bump: lazygit-version /LAZYGIT_VERSION="(.*)"/ https://github.com/jesseduffield/lazygit.git|semver:*
-LAZYGIT_VERSION="0.59.0" # Specify a stable release
+LAZYGIT_VERSION="0.60.0" # Specify a stable release
 export ZOPEN_STABLE_TAG="v${LAZYGIT_VERSION}"
 export ZOPEN_STABLE_URL="https://github.com/jesseduffield/lazygit.git"
 export ZOPEN_STABLE_DEPS="check_go wharf"
@@ -51,8 +51,10 @@ zopen_wharf()
   cd gocui; git apply ../patches/gui_others.gopatch; cd ..
   git clone https://github.com/jesseduffield/go-git.git
   cd go-git; git apply ../patches/go-git.gopatch; cd ..
-  
-  go work init ./lazygit ./clipboard ./xdg ./logrus ./afero ./gocui ./go-git ./pty
+  git clone https://github.com/golang/sys.git
+  cd sys; git -c advice.detachedHead=false checkout v0.31.0; git apply ../patches/sys.gopatch; cd ..
+ 
+  go work init ./lazygit ./clipboard ./xdg ./logrus ./afero ./gocui ./go-git ./pty ./sys
   wharf ./lazygit/...
   wharf ./clipboard/...
   wharf ./logrus/...

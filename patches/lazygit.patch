@@ -1,8 +1,8 @@
 diff --git a/pkg/config/user_config.go b/pkg/config/user_config.go
-index abf5918..2c19109 100644
+index 192d138..ad704fa 100644
 --- a/pkg/config/user_config.go
 +++ b/pkg/config/user_config.go
-@@ -769,7 +769,7 @@ func GetDefaultConfig() *UserConfig {
+@@ -770,7 +770,7 @@ func GetDefaultConfig() *UserConfig {
  			EnlargedSideViewLocation: "left",
  			WrapLinesInStagingView:   true,
  			UseHunkModeInStagingView: true,
@@ -44,20 +44,3 @@ index 55c2308..9a8d807 100644
  
  	if configLanguage == "en" {
  		return EnglishTranslationSet(), nil
-diff --git a/vendor/golang.org/x/sys/unix/ioctl_zos.go b/vendor/golang.org/x/sys/unix/ioctl_zos.go
-index c8b2a75..6af43a0 100644
---- a/vendor/golang.org/x/sys/unix/ioctl_zos.go
-+++ b/vendor/golang.org/x/sys/unix/ioctl_zos.go
-@@ -20,6 +20,12 @@ func IoctlSetInt(fd int, req int, value int) error {
- 	return ioctl(fd, req, uintptr(value))
- }
- 
-+// IoctlSetPointerInt performs an ioctl operation which sets an
-+// integer value on fd, using the specified request number.
-+func IoctlSetPointerInt(fd int, req int, value int) error {
-+	return ioctlPtr(fd, req, unsafe.Pointer(&value))
-+}
-+
- // IoctlSetWinsize performs an ioctl on fd with a *Winsize argument.
- //
- // To change fd's window size, the req argument should be TIOCSWINSZ.
