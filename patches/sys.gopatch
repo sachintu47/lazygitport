@@ -1,15 +1,16 @@
 diff --git a/unix/ioctl_zos.go b/unix/ioctl_zos.go
-index c8b2a750..6af43a00 100644
+index c8b2a750..5c44287a 100644
 --- a/unix/ioctl_zos.go
 +++ b/unix/ioctl_zos.go
-@@ -20,6 +20,12 @@ func IoctlSetInt(fd int, req int, value int) error {
+@@ -20,6 +20,13 @@ func IoctlSetInt(fd int, req int, value int) error {
  	return ioctl(fd, req, uintptr(value))
  }
  
 +// IoctlSetPointerInt performs an ioctl operation which sets an
 +// integer value on fd, using the specified request number.
 +func IoctlSetPointerInt(fd int, req int, value int) error {
-+	return ioctlPtr(fd, req, unsafe.Pointer(&value))
++	v32 := int32(value)
++	return ioctlPtr(fd, req, unsafe.Pointer(&v32))
 +}
 +
  // IoctlSetWinsize performs an ioctl on fd with a *Winsize argument.

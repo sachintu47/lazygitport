@@ -50,7 +50,7 @@ zopen_wharf()
   git clone https://github.com/jesseduffield/go-git.git
   cd go-git; git apply ../patches/go-git.gopatch; cd ..
   git clone https://github.com/golang/sys.git
-  cd sys; git -c advice.detachedHead=false checkout v0.31.0; git apply ../patches/sys.gopatch; cd ..
+  cd sys; git -c advice.detachedHead=false checkout v0.42.0; git apply ../patches/sys.gopatch; cd ..
  
   go work init ./lazygit ./clipboard ./xdg ./logrus ./afero ./gocui ./go-git ./pty ./sys
   wharf ./lazygit/...
