@@ -1,3 +1,23 @@
+diff --git a/main.go b/main.go
+index d7ce1db..91137d5 100644
+--- a/main.go
++++ b/main.go
+@@ -1,6 +1,7 @@
+ package main
+ 
+ import (
++	"os"
+ 	"github.com/jesseduffield/lazygit/pkg/app"
+ )
+ 
+@@ -13,6 +14,7 @@ var (
+ )
+ 
+ func main() {
++	os.Setenv("__ZOS_QUICKEXIT", "1")
+ 	ldFlagsBuildInfo := &app.BuildInfo{
+ 		Commit:      commit,
+ 		Date:        date,
 diff --git a/pkg/config/user_config.go b/pkg/config/user_config.go
 index 192d138..ad704fa 100644
 --- a/pkg/config/user_config.go

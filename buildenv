@@ -33,13 +33,11 @@ zopen_build()
 
 zopen_wharf()
 {
-  PTY_TAG="v1.1.21"
+  PTY_TAG="v1.1.24"
   cd .. && echo ""
   git clone https://github.com/creack/pty.git
   echo "Checking out $PTY_TAG"
   cd pty && git -c advice.detachedHead=false checkout $PTY_TAG
-  curl -s -o pty--$PTY_TAG.patch "https://raw.githubusercontent.com/ZOSOpenTools/wharf/main/deps-patches/pty--$PTY_TAG.patch"
-  git apply -v pty--$PTY_TAG.patch
   cd ..
 
   git clone https://github.com/atotto/clipboard.git
