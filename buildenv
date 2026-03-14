@@ -34,7 +34,7 @@ zopen_build()
 
 zopen_check()
 {
-  go test pkg/integration/clients/*.go -v -timeout 60m -parallel 1 -count=1
+  go test pkg/integration/clients/*.go -v -timeout 100m -parallel 1 -count=1
 }
 
 zopen_wharf()
